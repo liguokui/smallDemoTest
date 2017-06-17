@@ -1,0 +1,53 @@
+{
+  "pages": [
+   
+        "pages/test/test",
+        "pages/action/address",
+    "pages/action/address/address",
+    
+   
+
+    "pages/index/index",
+    "pages/action/call/call",
+    "pages/logs/logs", 
+    "pages/action/csd/csd" 
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "云上书房微服务",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/image/icon_component.png",
+        "selectedIconPath": "/image/icon_component_HL.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/action/call/call",
+        "iconPath": "/image/icon_component.png",
+        "selectedIconPath": "image/icon_component_HL.png",
+        "text": "电话"
+      },
+      {
+        "pagePath": "pages/action/address/address",
+        "iconPath": "/image/icon_component.png",
+        "selectedIconPath": "image/icon_component_HL.png",
+        "text": "地址"
+      },
+      {
+        "pagePath": "pages/API/index",
+        "iconPath": "/image/icon_component.png",
+        "selectedIconPath": "image/icon_component_HL.png",
+        "text": "客服"
+      }
+    ]
+  }
+}

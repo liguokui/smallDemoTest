@@ -1,0 +1,52 @@
+.set-area-wrapper{
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+.area-mask{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 7;
+    background-color: rgba(0,0,0,0.6);
+}
+.white-bg{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: white;
+    opacity: 1;
+    color: black;
+    z-index: 1000;
+}
+.white-bg .top-option{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 40px;
+    width: 100%;
+    font-size: 32rpx;
+    color: #2fa7e0;
+    z-index: 10000;
+    opacity: 1;
+    background: white;
+}
+.ok, .cancel{
+    position: absolute;
+    top: 0;
+    height: 40px;
+    line-height: 40px;
+    width: 50%;
+}
+.ok{
+    left: 24rpx;
+    text-align: left;
+}
+.cancel{
+    right: 24rpx;
+    text-align: right;
+}

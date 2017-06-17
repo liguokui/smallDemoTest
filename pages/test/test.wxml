@@ -1,0 +1,154 @@
+<contact-button type="default-drak" size="20" session-from="weapp">
+</contact-button>
+
+{{app.globalData.abc}} {{app.tel}}
+<view class="classname">
+  文本框：
+  <input value="{{inputvalue}}" bindblur="inputvalue" />
+</view>
+<button bindtap="requestTab">wx.request</button>
+<button bindtap="sendTab">提交数据</button>
+
+<form bindsubmit="formsubmit" bindreset="formreset">
+  <input hidden="true" name="Shorturl" value="{{inputvalue}}" />
+  <view wx:for="{{form.Template}}" wx:key="" class="classname">
+    <view wx:if="{{index=='form'}}" id="component">
+      <view>{{item.title}}</view>
+      <view>{{item.subtitle}}</view>
+    </view>
+    <view wx:if="{{index=='component'}}" id="component">
+      组件:
+      <view wx:for="{{item}}" wx:key=""> 
+        <!--id_singleLine-->
+        <view wx:if="{{item.name=='id_singleLine'}}">
+          {{item.title}}:
+          <input name="{{item.id}}" id="{{item.id}}" bindblur="datacheck" data-required="{{item.required}}" data-title="{{item.title}}" value="{{item.value}}" />
+        </view>
+        <!--id_multiple-->
+        <view wx:elif="{{item.name=='id_multiple'}}">
+          {{item.title}}:
+          <textarea name="{{item.id}}" id="{{item.id}}" bindblur="datacheck" data-required="{{item.required}}" data-title="{{item.title}}" value="{{item.value}}" />
+        </view>
+      <!--id_checkBox-->
+        <view wx:elif="{{item.name=='id_checkBox'}}">
+          <checkbox-group   name="{{item.id}}">
+            {{item.title}}
+            <label class="checkbox" wx:for="{{item.value}}">
+              <checkbox value="{{item.name}}" checked="{{item.selected}}" />{{item.name}}  
+            </label>
+          </checkbox-group>
+        </view>
+        <!--id_pictureCheckbox-->
+        <view wx:elif="{{item.name=='id_pictureCheckbox'}}">
+        <checkbox-group name="{{item.id}}">
+         {{item.title}}
+            <label wx:for="{{item.value}}">
+            <image src="{{item.img}}" style="width:30px;height:30px"></image>
+            <checkbox value="{{item.name}}" checked="{{item.selected}}" />
+            </label>
+        </checkbox-group>
+        </view>
+        <!--id_radio-->
+        <view wx:elif="{{item.name=='id_radio'}}">
+          {{item.title}}:
+          <radio-group name="{{item.id}}" class="radio-group">
+            <label class="radio" wx:for="{{item.value}}">
+              <radio value="{{item.name}}" checked="{{item.selected}}" />{{item.name}}
+            </label>
+          </radio-group>
+        </view> 
+        <!--id_pictureRadio-->
+        <view wx:elif="{{item.name=='id_pictureRadio'}}">
+         {{item.title}}:
+          <radio-group name="{{item.id}}" class="radio-group">
+            <label class="radio" wx:for="{{item.value}}">
+              <image src="{{item.img}}" style="width:30px;height:30px"></image>
+              <radio value="{{item.name}}" checked="{{item.selected}}" />{{item.name}}
+            </label>
+          </radio-group>
+        </view>
+        <!--id_dropDown-->
+        <view wx:elif="{{item.name=='id_dropDown'}}">
+          {{item.title}}:
+          <picker mode="selector" name="{{item.id}}" value="{{item.value[array[item.index].com].name}}" range-key="{{'name'}}" range="{{item.value}}" bindchange="pickerHanlder" data-index="{{item.index}}" data-required="{{item.required}}">
+            <view class="">
+              选择的内容：：{{item.id}}-{{array[item.index].com}}-{{item.value[array[item.index].com].name}}
+            </view>
+          </picker>
+        </view>
+        <!--id_picture-->
+        <view wx:elif="{{item.name=='id_picture'}}">
+        {{item.title}}
+        <image src="{{item.img}}"  style="width:30px;height:30px"></image>
+        </view>
+        <!--id_date-->
+        <view wx:elif="{{item.name=='id_date'}}">
+        <picker mode="date" name="{{item.id}}" value="{{date}}"  fields="{{(item.dateType=='d')?'day':'month'}}" bindchange="dateChange">
+          <view class="picker">
+            {{item.title}}: {{date}}
+          </view>
+        </picker>
+        </view>
+        <!--id_section-->
+        <view wx:elif="{{item.name=='id_section'}}">
+          {{item.title}}:
+          <view class="classname">-----------{{item.subtitle}}------------ </view>
+        </view>
+        <!--basic_gender-->
+        <view wx:elif="{{item.name=='basic_gender'}}">
+          {{item.title}}:
+          <picker mode="selector" requird="{{item.required}}" name="{{item.id}}" id="{{item.id}}" value="{{0}}" range-key="{{'name'}}" range="{{item.value}}" bindchange="pickerHanlder" data-id="{{item.id}}">
+            <view class="">
+              选择的内容：{{}}--- {{item.value[0].name}}
+            </view>
+          </picker>
+        </view>
+        <!--id_address-->
+        <view wx:elif="{{item.name=='id_address'}}">
+          {{item.title}}:
+          <view>
+            <view class="classname" bindtap="addselect">
+              <text>{{addressName}}</text>
+            </view>
+            <view wx:if="{{isShow}}" class="set-area-wrapper">
+              <view class="area-mask" catchtap="hideMask"></view>
+              <view class="white-bg">
+                <view class="top-option">
+                  <view class="ok" catchtap="confirm">确定</view>
+                  <view class="cancel" catchtap="hideMask">取消</view>
+                </view>
+                <picker-view name="{{item.id}}" id="{{item.id}}" indicator-style="height: 50px;" indicator-style="height: 40px;" style="width: 100%; height: 200px;background: white;opacity: 1" value="{{defaultvalue}}" bindchange="QHWdistrictChange">
+                  <picker-view-column>
+                    <view wx:for="{{provinceData}}" wx:key="" wx:for-item="pitem" wx:for-index="pindex" data-p="{{pindex}}" style="line-height: 50px">{{pitem}}</view>
+                  </picker-view-column>
+                  <picker-view-column>
+                    <view wx:for="{{cityData}}" wx:key="" wx:for-item="citem" wx:for-index="cindex" data-p="{{pindex}}" style="line-height: 50px">{{citem}}</view>
+                  </picker-view-column>
+                  <picker-view-column>
+                    <view wx:for="{{areaData}}" wx:key="" wx:for-item="aitem" wx:for-index="aindex" data-p="{{pindex}}" style="line-height: 50px">{{aitem}}</view>
+                  </picker-view-column>
+                </picker-view>
+              </view>
+            </view>
+            <!--隐藏域；存储picker的数据值-->
+            <view>
+              <input hidden="true" name="{{item.id}}" value="{{addIndex}}" />
+            </view>
+          </view>
+        </view>
+        <view wx:else>
+          {{item.title}}:
+        </view>
+        <!--</view>-->
+      </view>
+      <!--<view wx:if="{{index=='finishForm'}}" id="finishForm">
+       finishForm:
+        {{item.type}}
+        {{item.value}}
+     </view> -->
+    </view>
+  </view>
+
+  <button form-type="submit">表单提交</button>
+  <button form-type="reset">表单重置</button>
+</form>
